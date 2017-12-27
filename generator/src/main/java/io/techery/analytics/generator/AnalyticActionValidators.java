@@ -14,16 +14,17 @@ import java.util.Set;
 
 public class AnalyticActionValidators implements Validator<AnalyticActionClass> {
 
-   private final List<Validator<AnalyticActionClass>> validators = new ArrayList<>();
+   private final List<Validator<AnalyticActionClass>> validators = new ArrayList<Validator<AnalyticActionClass>>();
 
    public AnalyticActionValidators(Elements elementUtils) {
       validators.add(new ClassValidator());
       validators.add(new AttributesValidator(elementUtils));
+      // TODO add more validators - see ticket APPCORE-355
    }
 
    @Override
    public Set<ValidationError> validate(AnalyticActionClass value) {
-      final HashSet<ValidationError> errors = new HashSet<>();
+      final HashSet<ValidationError> errors = new HashSet<ValidationError>();
 
       for (Validator validator : validators) {
          //noinspection unchecked

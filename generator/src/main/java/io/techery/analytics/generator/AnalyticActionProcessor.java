@@ -44,8 +44,8 @@ public class AnalyticActionProcessor extends AbstractProcessor {
       if (processed) return false;
       else processed = true;
 
-      final Set<ValidationError> errors= new HashSet<>();
-      final List<AnalyticActionClass> actionClasses = new ArrayList<>();
+      final Set<ValidationError> errors= new HashSet<ValidationError>();
+      final List<AnalyticActionClass> actionClasses = new ArrayList<AnalyticActionClass>();
       for (Element element : roundEnv.getElementsAnnotatedWith(AnalyticsEvent.class)) {
          final TypeElement typeElement = (TypeElement) element;
          final AnalyticActionClass actionClass = new AnalyticActionClass(elementUtils, typeElement);
@@ -54,7 +54,7 @@ public class AnalyticActionProcessor extends AbstractProcessor {
       }
 
       if (!errors.isEmpty()) {
-         printErrors(new ArrayList<>(errors));
+         printErrors(new ArrayList<ValidationError>(errors));
          return true;
       }
 
@@ -77,7 +77,7 @@ public class AnalyticActionProcessor extends AbstractProcessor {
 
    @Override
    public Set<String> getSupportedAnnotationTypes() {
-      final Set<String> types = new HashSet<>();
+      final Set<String> types = new HashSet<String>();
       types.add(AnalyticsEvent.class.getCanonicalName());
       return types;
    }

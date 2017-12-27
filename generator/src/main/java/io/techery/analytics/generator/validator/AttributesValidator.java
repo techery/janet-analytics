@@ -23,11 +23,11 @@ public class AttributesValidator implements Validator<AnalyticActionClass> {
 
    @Override
    public Set<ValidationError> validate(AnalyticActionClass value) {
-      final Set<ValidationError> errors = new HashSet<>();
+      final Set<ValidationError> errors = new HashSet<ValidationError>();
 
       final String annotationName = Attribute.class.getSimpleName();
       final TypeElement typeElement = value.typeElement;
-      final List<Element> annotatedElements = new ArrayList<>();
+      final List<Element> annotatedElements = new ArrayList<Element>();
 
       for (Element element : elementUtils.getAllMembers(typeElement)) {
          if (element.getAnnotation(Attribute.class) != null) {
@@ -42,7 +42,7 @@ public class AttributesValidator implements Validator<AnalyticActionClass> {
                   annotationName, value.typeName.toString()));
          }
 
-         // todo does not work correctly with kotlin classes - field is always private, need to check getters
+         // TODO does not work correctly with kotlin classes - field is always private, need to check getters
 //         if (element.getModifiers().contains(Modifier.PRIVATE)) {
 //            errors.add(new ValidationError(element, "Attribute fields cannot have private access! Please, see class %s",
 //                  value.typeName.toString()));

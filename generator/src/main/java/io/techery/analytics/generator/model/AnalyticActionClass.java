@@ -28,8 +28,8 @@ public final class AnalyticActionClass {
 
    public String actionPartFieldName = null;
    public boolean containsAttributeMap;
-   public Set<String> attributeMapAccessorNames = new HashSet<>();
-   public Set<AttributeEntity> attributeEntities = new HashSet<>();
+   public Set<String> attributeMapAccessorNames = new HashSet<String>();
+   public Set<AttributeEntity> attributeEntities = new HashSet<AttributeEntity>();
 
    public AnalyticActionClass(Elements elementUtils, TypeElement typeElement) {
       this.typeElement = typeElement;

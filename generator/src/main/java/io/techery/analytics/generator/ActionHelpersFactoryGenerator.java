@@ -26,8 +26,8 @@ public class ActionHelpersFactoryGenerator extends CodeGenerator<AnalyticActionC
    @Override
    void generate(List<AnalyticActionClass> classes) {
       final TypeSpec.Builder classBuilder = TypeSpec.classBuilder(HELPERS_FACTORY_CLASS_SIMPLE_NAME)
-            .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-            .addJavadoc("TODO add javadoc\n")
+            .addModifiers(Modifier.FINAL)
+            .addJavadoc(formatJavadoc())
             .addAnnotation(AnnotationSpec.builder(Generated.class)
                   .addMember("value", "$S", AnalyticActionProcessor.class.getCanonicalName())
                   .addMember("date","$S", new Date(System.currentTimeMillis()).toString())
@@ -37,6 +37,15 @@ public class ActionHelpersFactoryGenerator extends CodeGenerator<AnalyticActionC
             .addMethod(generateProvideMethod(classes));
 
       saveClass(HELPERS_FACTORY_CLASS_PACKAGE, classBuilder.build());
+   }
+
+   private String formatJavadoc() {
+      return new StringBuilder()
+            .append("Factory to provide generated helper-classes.\n")
+            .append("For {@link AnalyticsService}'s internal use only,\n")
+            .append("in case if client code needs to make use of\n")
+            .append("helper (e.g. for wrapper service) - use {@link AnalyticActionHelperCacheImpl}\n")
+            .toString();
    }
 
    private MethodSpec generateConstructor() {

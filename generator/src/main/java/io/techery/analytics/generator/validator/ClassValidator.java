@@ -15,7 +15,7 @@ public class ClassValidator implements Validator<AnalyticActionClass> {
 
    @Override
    public Set<ValidationError> validate(AnalyticActionClass value) {
-      final Set<ValidationError> errors = new HashSet<>();
+      final Set<ValidationError> errors = new HashSet<ValidationError>();
       final TypeElement typeElement = value.typeElement;
 
       if (typeElement.getKind() != ElementKind.CLASS) {

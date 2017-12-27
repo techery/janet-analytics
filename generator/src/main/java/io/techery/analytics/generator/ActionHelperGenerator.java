@@ -36,7 +36,7 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
                   .addMember("value", "$S", AnalyticActionProcessor.class.getCanonicalName())
                   .addMember("date","$S", new Date(System.currentTimeMillis()).toString())
                   .build())
-            .addJavadoc("TODO add javadoc here\n")
+            .addJavadoc(formatJavadoc(actionClass))
             .addTypeVariables(getTypeVariables(actionClass.typeElement))
             .addSuperinterface(ParameterizedTypeName.get(
                   ClassName.get(ActionHelper.class), actionClass.typeName
@@ -48,8 +48,15 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
       saveClass(actionClass.packageName, classBuilder.build());
    }
 
+   private String formatJavadoc(AnalyticActionClass actionClass) {
+      return new StringBuilder()
+            .append(String.format(Locale.US, "Helper class generated based on %s\n", actionClass.typeName.toString()))
+            .append("Utilizes analytic event class content in a format, suitable for {@link AnalyticsService}\n")
+            .toString();
+   }
+
    private Iterable<TypeVariableName> getTypeVariables(TypeElement typeElement) {
-      final ArrayList<TypeVariableName> typeVariableNames = new ArrayList<>();
+      final ArrayList<TypeVariableName> typeVariableNames = new ArrayList<TypeVariableName>();
 
       for (TypeParameterElement parameterElement: typeElement.getTypeParameters()) {
          typeVariableNames.add((TypeVariableName) TypeVariableName.get(parameterElement.asType()));

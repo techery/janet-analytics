@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class AnalyticsService extends ActionService {
 
-   private final Map<String, Tracker> trackersMap = new HashMap<>();
+   private final Map<String, Tracker> trackersMap = new HashMap<String, Tracker>();
    private final AnalyticActionHelperCache actionHelperCache;
 
    public AnalyticsService(List<Tracker> trackers) {

@@ -59,7 +59,7 @@ public class ActionClassUtils {
    }
 
    public static Set<String> getAnnotatedFieldNames(Elements elementUtils, TypeElement typeElement, Class<? extends Annotation> annotationClass) {
-      Set<String> names = new HashSet<>();
+      Set<String> names = new HashSet<String>();
       for (Element element : elementUtils.getAllMembers(typeElement)) {
          if (element.getKind() == ElementKind.FIELD) {
             if (element.getAnnotation(annotationClass) != null) {
@@ -72,7 +72,7 @@ public class ActionClassUtils {
    }
 
    public static Set<AttributeEntity> getAttributes(Elements elementUtils, TypeElement typeElement) {
-      final Set<AttributeEntity> attributes = new HashSet<>();
+      final Set<AttributeEntity> attributes = new HashSet<AttributeEntity>();
 
       for (Element element : elementUtils.getAllMembers(typeElement)) {
          if (element.getKind() == ElementKind.FIELD) {

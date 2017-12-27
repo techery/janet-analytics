@@ -15,7 +15,7 @@ import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FAC
 public class AnalyticActionHelperCacheImpl implements AnalyticActionHelperCache {
 
    private final AnalyticActionHelperFactory actionHelperFactory;
-   private final Map<Class, ActionHelper> helpersCache = new HashMap<>();
+   private final Map<Class, ActionHelper> helpersCache = new HashMap<Class, ActionHelper>();
 
    public AnalyticActionHelperCacheImpl() {
       actionHelperFactory = loadActionHelperFactory();
