@@ -1,5 +1,4 @@
 
-
 buildscript {
 
     ext {
@@ -50,9 +49,8 @@ kapt {
 }
 
 dependencies {
-    implementation project (":api")
-    implementation project (":library")
-    kapt project (":generator")
+    kapt project(":generator")
+    implementation project(":library")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
 }

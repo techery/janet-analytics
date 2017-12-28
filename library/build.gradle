@@ -11,7 +11,7 @@ compileJava {
 }
 
 dependencies {
-    implementation project (":api")
+    api project(":api")
 
-    implementation 'com.github.techery:janet:1.0.7'
+    api 'com.github.techery:janet:1.0.7'
 }
