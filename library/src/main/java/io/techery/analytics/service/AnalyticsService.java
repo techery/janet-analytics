@@ -4,7 +4,6 @@ import io.techery.janet.ActionHolder;
 import io.techery.janet.ActionService;
 import io.techery.janet.JanetException;
 import io.techery.janet.analytics.ActionHelper;
-import io.techery.janet.analytics.AnalyticActionHelperCache;
 import io.techery.janet.analytics.Tracker;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 
@@ -16,17 +15,12 @@ import java.util.Map;
 public class AnalyticsService extends ActionService {
 
    private final Map<String, Tracker> trackersMap = new HashMap<String, Tracker>();
-   private final AnalyticActionHelperCache actionHelperCache;
+   private final AnalyticActionHelperCache actionHelperCache = AnalyticActionHelperCache.getInstance();
 
    public AnalyticsService(List<Tracker> trackers) {
-      this(trackers, new AnalyticActionHelperCacheImpl());
-   }
-
-   public AnalyticsService(List<Tracker> trackers, AnalyticActionHelperCache actionHelperCache) {
       for (Tracker tracker : trackers) {
          trackersMap.put(tracker.getKey(), tracker);
       }
-      this.actionHelperCache = actionHelperCache;
    }
 
    @Override

@@ -1,15 +1,19 @@
 package io.techery.analytics.sample;
 
-import io.techery.analytics.service.AnalyticActionHelperCacheImpl;
+import io.techery.analytics.service.AnalyticActionHelperCache;
+import io.techery.analytics.service.AnalyticsService;
+import io.techery.janet.ActionService;
 import io.techery.janet.analytics.ActionHelper;
-import io.techery.janet.analytics.AnalyticActionHelperCache;
+import io.techery.janet.analytics.Tracker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class TestFactory {
 
    public static void main(String[] args) {
-      final AnalyticActionHelperCache helpersCache = new AnalyticActionHelperCacheImpl();
+      final AnalyticActionHelperCache helpersCache = AnalyticActionHelperCache.getInstance();
       final ActionHelper helper = helpersCache.getActionHelper(FeedDetailsViewAction.class);
       final FeedDetailsViewAction action =
             new FeedDetailsViewAction("a_path", "mapAttrib", "singleAttrib");
@@ -29,5 +33,15 @@ public class TestFactory {
       }
       stringBuilder.append("]");
       return stringBuilder.toString().replace(", ]", "]");
+   }
+
+   private List<Tracker> provideTrackers() {
+      final List<Tracker> trackers = new ArrayList<>();
+      trackers.add(null);
+      return trackers;
+   }
+
+   private void stub() {
+      ActionService actionService = new AnalyticsService(provideTrackers());
    }
 }

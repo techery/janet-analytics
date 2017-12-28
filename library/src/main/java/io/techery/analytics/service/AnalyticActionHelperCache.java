@@ -2,7 +2,6 @@ package io.techery.analytics.service;
 
 import io.techery.janet.JanetInternalException;
 import io.techery.janet.analytics.ActionHelper;
-import io.techery.janet.analytics.AnalyticActionHelperCache;
 import io.techery.janet.analytics.AnalyticActionHelperFactory;
 
 import java.util.HashMap;
@@ -12,16 +11,32 @@ import java.util.Map;
 import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FACTORY_CLASS_NAME;
 import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FACTORY_CLASS_SIMPLE_NAME;
 
-public class AnalyticActionHelperCacheImpl implements AnalyticActionHelperCache {
+public class AnalyticActionHelperCache {
 
-   private final AnalyticActionHelperFactory actionHelperFactory;
+   private static volatile AnalyticActionHelperCache instance = new AnalyticActionHelperCache();
+
    private final Map<Class, ActionHelper> helpersCache = new HashMap<Class, ActionHelper>();
 
-   public AnalyticActionHelperCacheImpl() {
-      actionHelperFactory = loadActionHelperFactory();
+   private AnalyticActionHelperFactory actionHelperFactory;
+
+   public static AnalyticActionHelperCache getInstance() {
+      if (instance == null) {
+         synchronized (AnalyticActionHelperCache.class) {
+            if (instance == null) {
+               instance = new AnalyticActionHelperCache();
+               instance.loadActionHelperFactory();
+            }
+         }
+      }
+      return instance;
    }
 
-   @Override
+   private AnalyticActionHelperCache() {
+      if (instance != null) { // reflection call protection
+         throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
+      }
+   }
+
    public <T> ActionHelper<T> getActionHelper(Class<T> actionClass) {
       @SuppressWarnings("unchecked")
       ActionHelper<T> helper = helpersCache.get(actionClass);
@@ -32,12 +47,12 @@ public class AnalyticActionHelperCacheImpl implements AnalyticActionHelperCache 
       return helper;
    }
 
-   private AnalyticActionHelperFactory loadActionHelperFactory() {
+   private void loadActionHelperFactory() {
       try {
          @SuppressWarnings("unchecked")
          final Class<AnalyticActionHelperFactory> factoryClass =
                (Class<AnalyticActionHelperFactory>) Class.forName(HELPERS_FACTORY_CLASS_NAME);
-         return factoryClass.newInstance();
+         actionHelperFactory = factoryClass.newInstance();
       } catch (Exception exception) {
          throw new JanetInternalException(String.format(Locale.US,
                "Cannot instantiate %s: generator failed", HELPERS_FACTORY_CLASS_SIMPLE_NAME), exception);
