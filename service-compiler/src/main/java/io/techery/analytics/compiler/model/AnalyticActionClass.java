@@ -1,8 +1,8 @@
-package io.techery.analytics.generator.model;
+package io.techery.analytics.compiler.model;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
-import io.techery.analytics.generator.ActionClassUtils;
+import io.techery.analytics.compiler.ActionClassUtils;
 import io.techery.janet.analytics.annotation.ActionPart;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 import io.techery.janet.analytics.annotation.AttributeMap;
@@ -12,7 +12,7 @@ import javax.lang.model.util.Elements;
 import java.util.HashSet;
 import java.util.Set;
 
-import static io.techery.analytics.generator.ActionHelperGenerator.ACTION_HELPER_SUFFIX;
+import static io.techery.analytics.compiler.ActionHelperGenerator.ACTION_HELPER_SUFFIX;
 import static io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM;
 
 public final class AnalyticActionClass {

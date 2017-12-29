@@ -49,7 +49,7 @@ kapt {
 }
 
 dependencies {
-    kapt project(":generator")
+    kapt project(":service-compiler")
     implementation project(":library")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"

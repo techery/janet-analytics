@@ -1,8 +1,8 @@
-package io.techery.analytics.generator;
+package io.techery.analytics.compiler;
 
 import com.squareup.javapoet.*;
-import io.techery.analytics.generator.model.AnalyticActionClass;
-import io.techery.analytics.generator.model.AttributeEntity;
+import io.techery.analytics.compiler.model.AnalyticActionClass;
+import io.techery.analytics.compiler.model.AttributeEntity;
 import io.techery.janet.analytics.ActionHelper;
 
 import javax.annotation.Generated;

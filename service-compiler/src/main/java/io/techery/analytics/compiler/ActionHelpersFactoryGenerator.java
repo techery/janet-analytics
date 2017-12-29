@@ -1,10 +1,10 @@
-package io.techery.analytics.generator;
+package io.techery.analytics.compiler;
 
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.techery.analytics.generator.model.AnalyticActionClass;
+import io.techery.analytics.compiler.model.AnalyticActionClass;
 import io.techery.janet.analytics.ActionHelper;
 import io.techery.janet.analytics.AnalyticActionHelperFactory;
 

@@ -1,4 +1,4 @@
-package io.techery.analytics.generator.model;
+package io.techery.analytics.compiler.model;
 
 import javax.lang.model.element.Element;
 import java.util.Locale;

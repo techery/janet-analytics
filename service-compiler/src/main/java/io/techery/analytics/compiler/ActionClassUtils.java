@@ -1,6 +1,6 @@
-package io.techery.analytics.generator;
+package io.techery.analytics.compiler;
 
-import io.techery.analytics.generator.model.AttributeEntity;
+import io.techery.analytics.compiler.model.AttributeEntity;
 import io.techery.janet.analytics.annotation.Attribute;
 
 import javax.lang.model.element.AnnotationMirror;

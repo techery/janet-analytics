@@ -55,7 +55,7 @@ public class AnalyticActionHelperCache {
          actionHelperFactory = factoryClass.newInstance();
       } catch (Exception exception) {
          throw new JanetInternalException(String.format(Locale.US,
-               "Cannot instantiate %s: generator failed", HELPERS_FACTORY_CLASS_SIMPLE_NAME), exception);
+               "Cannot instantiate %s: service-compiler failed", HELPERS_FACTORY_CLASS_SIMPLE_NAME), exception);
       }
    }
 }

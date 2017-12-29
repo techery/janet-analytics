@@ -1,4 +1,4 @@
-package io.techery.analytics.generator;
+package io.techery.analytics.compiler;
 
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;

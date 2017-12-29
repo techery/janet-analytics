@@ -1,10 +1,10 @@
-package io.techery.analytics.generator;
+package io.techery.analytics.compiler;
 
-import io.techery.analytics.generator.model.AnalyticActionClass;
-import io.techery.analytics.generator.model.ValidationError;
-import io.techery.analytics.generator.validator.AttributesValidator;
-import io.techery.analytics.generator.validator.ClassValidator;
-import io.techery.analytics.generator.validator.Validator;
+import io.techery.analytics.compiler.model.AnalyticActionClass;
+import io.techery.analytics.compiler.model.ValidationError;
+import io.techery.analytics.compiler.validator.AttributesValidator;
+import io.techery.analytics.compiler.validator.ClassValidator;
+import io.techery.analytics.compiler.validator.Validator;
 
 import javax.lang.model.util.Elements;
 import java.util.ArrayList;

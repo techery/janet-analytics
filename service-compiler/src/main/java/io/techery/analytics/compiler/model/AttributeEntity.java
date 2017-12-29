@@ -1,4 +1,4 @@
-package io.techery.analytics.generator.model;
+package io.techery.analytics.compiler.model;
 
 public class AttributeEntity {
 

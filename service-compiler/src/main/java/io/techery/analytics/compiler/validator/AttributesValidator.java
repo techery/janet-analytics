@@ -1,7 +1,7 @@
-package io.techery.analytics.generator.validator;
+package io.techery.analytics.compiler.validator;
 
-import io.techery.analytics.generator.model.AnalyticActionClass;
-import io.techery.analytics.generator.model.ValidationError;
+import io.techery.analytics.compiler.model.AnalyticActionClass;
+import io.techery.analytics.compiler.model.ValidationError;
 import io.techery.janet.analytics.annotation.Attribute;
 
 import javax.lang.model.element.Element;
