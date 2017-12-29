@@ -139,10 +139,33 @@ For more sophisticated janet-usage - please see samples from [Janet repo](https:
  * if event classes involve inheritance - only bottom-most inheritor's instance can be sent to service
  * event classes should not declare annotated fields as `private` - default visibility is applicable
 
+### Download
+
+Grab via Gradle:
+
+```groovy
+  repositories {
+      ...
+      maven { url "https://jitpack.io" }
+  }
+  dependencies {
+      implementation 'com.github.techery.janet-analytics:library:xxx'
+      apt 'com.github.techery.janet-analytics:service-compiler:xxx'
+      // use kapt if your project has analytics events written in Kotlin
+      
+      // also use explicit latest version Janet dependency to incorporate new features and bugfixes
+      implementation 'com.github.techery:janet:zzz'
+  }
+```
+
+ * janet-analytics: [![](https://jitpack.io/v/techery/janet-analytics.svg)](https://jitpack.io/#techery/janet-analytics)
+ * janet: [![](https://jitpack.io/v/techery/janet.svg)](https://jitpack.io/#techery/janet)
+
 ### Links
 
  * [Janet](https://github.com/techery/janet)
  * Janet's [CommandActionService](https://github.com/techery/janet-command)
+ * [markdown-editor](https://jbt.github.io/markdown-editor) - handy GitHub-flavored markdown editor used to compose this README
 
 ## License
 
