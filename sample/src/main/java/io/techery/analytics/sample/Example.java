@@ -14,13 +14,20 @@ import java.util.List;
 
 public class Example {
 
-   public void go() {
-//      final AnalyticActionHelperCache helpersCache = AnalyticActionHelperCache.getInstance();
-//      final ActionHelper helper = helpersCache.getActionHelper(FeedDetailsViewAction.class);
-//      final FeedDetailsViewAction action =
-//            new FeedDetailsViewAction("a_path", "mapAttrib", "singleAttrib");
+   public static void main(String[] args) {
+      new Example().go();
+   }
 
-      stub();
+   public void go() {
+      ActionService actionService = new AnalyticsService(provideTrackers());
+      Janet janet = new Janet.Builder().addService(actionService).build();
+
+      Calendar petBirthDate = Calendar.getInstance();
+      petBirthDate.set(Calendar.YEAR, 2015);
+      PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
+      PetBuyEvent event = new PetBuyEvent(pet);
+
+      janet.createPipe(PetBuyEvent.class).send(event);
    }
 
    private static String printArray(String[] array) {
@@ -36,15 +43,5 @@ public class Example {
       final List<Tracker> trackers = new ArrayList<>();
       trackers.add(new MyAnalyticsSdkTracker());
       return trackers;
-   }
-
-   private void stub() {
-      ActionService actionService = new AnalyticsService(provideTrackers());
-      Janet janet = new Janet.Builder().addService(actionService).build();
-      Calendar petBirthDate = Calendar.getInstance();
-      petBirthDate.set(Calendar.YEAR, 2015);
-      PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
-      PetBuyEvent event = new PetBuyEvent(pet);
-      janet.createPipe(PetBuyEvent.class).send(event);
    }
 }

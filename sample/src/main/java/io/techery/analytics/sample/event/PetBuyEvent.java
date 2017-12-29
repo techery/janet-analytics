@@ -14,8 +14,8 @@ import java.util.Map;
 
 import static io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM;
 
-@AnalyticsEvent(actionKey = "user_bought_pet" + ACTION_PATH_PARAM, trackerIds = { MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY })
-public class PetBuyEvent {
+@AnalyticsEvent(actionKey = "user_bought_pet:" + ACTION_PATH_PARAM, trackerIds = { MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY })
+public class PetBuyEvent implements BaseEvent {
 
    @ActionPart
    String petType;

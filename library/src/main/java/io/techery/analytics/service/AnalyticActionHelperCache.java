@@ -13,7 +13,7 @@ import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FAC
 
 public class AnalyticActionHelperCache {
 
-   private static volatile AnalyticActionHelperCache instance = new AnalyticActionHelperCache();
+   private static volatile AnalyticActionHelperCache instance = null;
 
    private final Map<Class, ActionHelper> helpersCache = new HashMap<Class, ActionHelper>();
 
