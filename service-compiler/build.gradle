@@ -1,5 +1,6 @@
 
 apply plugin: 'java-library'
+apply from: rootProject.file('gradle/plugins/maven-simple.gradle')
 
 compileJava {
     sourceCompatibility = 1.6
