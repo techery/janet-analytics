@@ -21,6 +21,6 @@ public class AttributeEntity {
 
    @Override
    public int hashCode() {
-      return attributeKey.hashCode();
+      return this.attributeKey.hashCode();
    }
 }

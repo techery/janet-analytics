@@ -3,6 +3,7 @@ package io.techery.analytics.compiler;
 import com.squareup.javapoet.*;
 import io.techery.analytics.compiler.model.AnalyticActionClass;
 import io.techery.analytics.compiler.model.AttributeEntity;
+import io.techery.analytics.compiler.model.KeyPathEntity;
 import io.techery.janet.analytics.ActionHelper;
 
 import javax.annotation.Generated;
@@ -12,11 +13,11 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import java.util.*;
 
-import static io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM;
-
 public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
 
    public static final String ACTION_HELPER_SUFFIX = "Helper";
+
+   private static final String GENERATED_ACTION_KEY_VAR_NAME = "formattedActionKey";
 
    public ActionHelperGenerator(Filer filer) {
       super(filer);
@@ -79,8 +80,15 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
       final CodeBlock.Builder builder = CodeBlock.builder();
 
       if (actionClass.containsActionPathParam) {
-         builder.addStatement("return $S.replace($S, action.$L)",
-               actionClass.action, ACTION_PATH_PARAM, actionClass.actionPartFieldName);
+         builder.addStatement("$T $L = $S", String.class, GENERATED_ACTION_KEY_VAR_NAME, actionClass.action);
+         for (KeyPathEntity keyPathEntity : actionClass.keyPathEntities) {
+            builder.addStatement("$L = $L.replace($S, action.$L)",
+                  GENERATED_ACTION_KEY_VAR_NAME,
+                  GENERATED_ACTION_KEY_VAR_NAME,
+                  keyPathEntity.annotationValue,
+                  keyPathEntity.fieldAccessibleName);
+         }
+         builder.addStatement("return $L", GENERATED_ACTION_KEY_VAR_NAME);
       } else {
          builder.addStatement("return $S", actionClass.action);
       }

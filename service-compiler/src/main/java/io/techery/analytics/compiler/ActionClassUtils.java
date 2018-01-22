@@ -1,7 +1,9 @@
 package io.techery.analytics.compiler;
 
 import io.techery.analytics.compiler.model.AttributeEntity;
+import io.techery.analytics.compiler.model.KeyPathEntity;
 import io.techery.janet.analytics.annotation.Attribute;
+import io.techery.janet.analytics.annotation.KeyPath;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
@@ -87,6 +89,32 @@ public class ActionClassUtils {
       }
 
       return attributes;
+   }
+
+   public static Set<KeyPathEntity> getKeyPathEntities(Elements elementUtils, TypeElement typeElement) {
+      final Set<KeyPathEntity> keyPathEntities = new HashSet<KeyPathEntity>();
+      final String keyPathSymbol = "$"; // TODO make '$' customizable
+
+      for (Element element : elementUtils.getAllMembers(typeElement)) {
+         if (element.getKind() == ElementKind.FIELD) {
+            if (element.getAnnotation(KeyPath.class) != null) {
+               String prefixedKeyPath = keyPathSymbol + element.getAnnotation(KeyPath.class).value();
+
+               keyPathEntities.add(new KeyPathEntity(
+                     prefixedKeyPath,
+                     resolveAccessibleFieldName(elementUtils, typeElement, element.getSimpleName().toString())
+               ));
+            }
+         }
+      }
+
+      return keyPathEntities;
+   }
+
+   public static boolean checkHasKeyParams(String actionKey) {
+      final String keyParamSymbol = "$"; // TODO: make this customizable via gradle
+
+      return actionKey.contains(keyParamSymbol);
    }
 
    public static String resolveAccessibleFieldName(Elements elementUtils, TypeElement typeElement, String fieldName) {

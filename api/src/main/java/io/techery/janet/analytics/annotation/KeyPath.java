@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface ActionPart {
-
-   String ACTION_PATH_PARAM = "@action_path";
+public @interface KeyPath {
+   String value();
 }

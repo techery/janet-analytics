@@ -1,14 +1,14 @@
 package io.techery.analytics.sample
 
-import io.techery.janet.analytics.annotation.ActionPart
 import io.techery.janet.analytics.annotation.AttributeMap
+import io.techery.janet.analytics.annotation.KeyPath
 
 abstract class SomeVeryBasicViewAction {
 
     @AttributeMap
     val map: HashMap<String, String> = HashMap()
 
-    @ActionPart
+    @KeyPath("action_path")
     val actionPart: String = "ololo"
 
     init {

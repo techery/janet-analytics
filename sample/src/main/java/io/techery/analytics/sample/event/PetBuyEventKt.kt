@@ -2,20 +2,19 @@ package io.techery.analytics.sample.event
 
 import io.techery.analytics.sample.MyAnalyticsSdkTracker
 import io.techery.analytics.sample.model.PetEntity
-import io.techery.janet.analytics.annotation.ActionPart
-import io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM
 import io.techery.janet.analytics.annotation.AnalyticsEvent
 import io.techery.janet.analytics.annotation.Attribute
 import io.techery.janet.analytics.annotation.AttributeMap
+import io.techery.janet.analytics.annotation.KeyPath
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-@AnalyticsEvent(actionKey = "user_bought_pet$ACTION_PATH_PARAM",
+@AnalyticsEvent(actionKey = "user_bought_pet\$pet_type",
         trackerIds = arrayOf(MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY))
 class PetBuyEventKt(petEntity: PetEntity) {
 
-    @ActionPart
+    @KeyPath("pet_type")
     val petType: String = petEntity.petType.name.toLowerCase(Locale.US)
     @Attribute("pet_birth_date")
     val petBirthDate: String = DateFormat.getDateInstance().format(petEntity.birthDate)

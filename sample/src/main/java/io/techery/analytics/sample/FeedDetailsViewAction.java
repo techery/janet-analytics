@@ -1,6 +1,6 @@
 package io.techery.analytics.sample;
 
-import io.techery.janet.analytics.annotation.ActionPart;
+import io.techery.janet.analytics.annotation.KeyPath;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 import io.techery.janet.analytics.annotation.Attribute;
 import io.techery.janet.analytics.annotation.AttributeMap;
@@ -8,10 +8,10 @@ import io.techery.janet.analytics.annotation.AttributeMap;
 import java.util.HashMap;
 import java.util.Map;
 
-@AnalyticsEvent(actionKey = "blah-blah:@action_path", trackerIds = {"ClientProjectUsedTracker", "bla"})
+@AnalyticsEvent(actionKey = "blah-blah:$action_path", trackerIds = {"ClientProjectUsedTracker", "bla"})
 public class FeedDetailsViewAction {
 
-   @ActionPart
+   @KeyPath("action_path")
    final String action;
 
    @AttributeMap
