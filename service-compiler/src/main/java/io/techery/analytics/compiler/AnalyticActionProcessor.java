@@ -4,7 +4,7 @@ import com.google.auto.service.AutoService;
 import io.techery.analytics.compiler.model.AnalyticActionClass;
 import io.techery.analytics.compiler.model.Options;
 import io.techery.analytics.compiler.model.ValidationError;
-import io.techery.janet.analytics.AnalyticActionHelperFactory;
+import io.techery.janet.analytics.ActionHelperFactory;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 
 import javax.annotation.processing.*;
@@ -18,8 +18,8 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import java.util.*;
 
-import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FACTORY_CLASS_PACKAGE;
-import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FACTORY_CLASS_SIMPLE_NAME;
+import static io.techery.janet.analytics.ActionHelperFactory.HELPERS_FACTORY_CLASS_PACKAGE;
+import static io.techery.janet.analytics.ActionHelperFactory.HELPERS_FACTORY_CLASS_SIMPLE_NAME;
 
 @AutoService(Processor.class)
 public class AnalyticActionProcessor extends AbstractProcessor {
@@ -109,7 +109,7 @@ public class AnalyticActionProcessor extends AbstractProcessor {
       PackageElement packageElement = elementUtils.getPackageElement(HELPERS_FACTORY_CLASS_PACKAGE);
       if (packageElement == null) return Collections.emptyList();
 
-      TypeElement factoryInterfaceElement = elementUtils.getTypeElement(AnalyticActionHelperFactory.class.getCanonicalName());
+      TypeElement factoryInterfaceElement = elementUtils.getTypeElement(ActionHelperFactory.class.getCanonicalName());
       for (Element packageContentElement : packageElement.getEnclosedElements()) {
          for (TypeMirror typeMirror : ((TypeElement) packageContentElement).getInterfaces()) {
             if (typesUtil.isAssignable(typeMirror, factoryInterfaceElement.asType())) {
