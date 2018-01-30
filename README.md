@@ -6,13 +6,13 @@ Janet ActionService to handle analytics events throughout your project - in a de
 
 Usually analytics SDK (Adobe, Google's Firebase, Facebook, Amazon etc) expects data in a predefined format, which differs between different libraries. This brings several complexities, such as:
 
- * switching between various analytic service vendors is difficult, error-prone and a lot of mechanical work.
+ * switching between various analytic service vendors is difficult, error-prone and a lot of mechanical work
  * using two or more analytic SDK's in one project is a headache as it requires a lot of boilerplate code
- * your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into format, suitable for analytics SDK
+ * your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into suitable format
 
 This library deals with all of these complexities in a way that's shown below.
 
-### Typical usage scenario
+### Typical example
 
 Imagine you have a user interaction, where you want to log some data.
 
@@ -133,11 +133,16 @@ For more sophisticated janet-usage - please see samples from [Janet repo](https:
 
  * Event-classes can be written in Kotlin
  * Testable: for sample, refer to sample tests (will be implemented in future)
+ * multiple actionKey parameters are supported
 
 ### Limitations
 
  * if event classes involve inheritance - only bottom-most inheritor's instance can be sent to service
  * event classes should not declare annotated fields as `private` - default visibility is applicable
+
+### Advanced bits
+
+ * in multi-module project using javac option `'-Ajanet.analytics.module.library=true'` is a **must**, while in main module (e.g. your typical Android-project `:app` module) - this parameter should not be specified
 
 ### Download
 
