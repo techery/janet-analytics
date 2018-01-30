@@ -49,8 +49,7 @@ public class AnalyticActionHelperCache {
 
    private void loadActionHelperFactory() {
       try {
-         @SuppressWarnings("unchecked")
-         final Class<AnalyticActionHelperFactory> factoryClass =
+         @SuppressWarnings("unchecked") final Class<AnalyticActionHelperFactory> factoryClass =
                (Class<AnalyticActionHelperFactory>) Class.forName(HELPERS_FACTORY_CLASS_NAME);
          actionHelperFactory = factoryClass.newInstance();
       } catch (Exception exception) {
