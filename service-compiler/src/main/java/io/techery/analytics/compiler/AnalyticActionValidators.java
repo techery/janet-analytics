@@ -4,6 +4,7 @@ import io.techery.analytics.compiler.model.AnalyticActionClass;
 import io.techery.analytics.compiler.model.ValidationError;
 import io.techery.analytics.compiler.validator.AttributesValidator;
 import io.techery.analytics.compiler.validator.ClassValidator;
+import io.techery.analytics.compiler.validator.KeyPathValidator;
 import io.techery.analytics.compiler.validator.Validator;
 
 import javax.lang.model.util.Elements;
@@ -19,6 +20,7 @@ public class AnalyticActionValidators implements Validator<AnalyticActionClass> 
    public AnalyticActionValidators(Elements elementUtils) {
       validators.add(new ClassValidator());
       validators.add(new AttributesValidator(elementUtils));
+      validators.add(new KeyPathValidator());
       // TODO add more validators - see ticket APPCORE-355
    }
 

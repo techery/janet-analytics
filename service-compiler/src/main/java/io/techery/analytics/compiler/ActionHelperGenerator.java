@@ -80,15 +80,20 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
       final CodeBlock.Builder builder = CodeBlock.builder();
 
       if (actionClass.containsActionPathParam) {
-         builder.addStatement("$T $L = $S", String.class, GENERATED_ACTION_KEY_VAR_NAME, actionClass.action);
-         for (KeyPathEntity keyPathEntity : actionClass.keyPathEntities) {
-            builder.addStatement("$L = $L.replace($S, action.$L)",
-                  GENERATED_ACTION_KEY_VAR_NAME,
-                  GENERATED_ACTION_KEY_VAR_NAME,
-                  keyPathEntity.annotationValue,
-                  keyPathEntity.fieldAccessibleName);
+         if (actionClass.keyPathEntities.size() == 1) {
+            KeyPathEntity keyPath = actionClass.keyPathEntities.iterator().next();
+            builder.addStatement("return $S.replace($S, action.$L)", actionClass.action, keyPath.annotationValue, keyPath.fieldAccessibleName);
+         } else {
+            builder.addStatement("$T $L = $S", String.class, GENERATED_ACTION_KEY_VAR_NAME, actionClass.action);
+            for (KeyPathEntity keyPathEntity : actionClass.keyPathEntities) {
+               builder.addStatement("$L = $L.replace($S, action.$L)",
+                     GENERATED_ACTION_KEY_VAR_NAME,
+                     GENERATED_ACTION_KEY_VAR_NAME,
+                     keyPathEntity.annotationValue,
+                     keyPathEntity.fieldAccessibleName);
+            }
+            builder.addStatement("return $L", GENERATED_ACTION_KEY_VAR_NAME);
          }
-         builder.addStatement("return $L", GENERATED_ACTION_KEY_VAR_NAME);
       } else {
          builder.addStatement("return $S", actionClass.action);
       }

@@ -18,6 +18,8 @@ import java.util.*;
 
 public class ActionClassUtils {
 
+   public static final String ACTION_KEY_PATH_SYMBOL = "$";
+
    public static boolean checkIsKotlinClass(Elements elementUtils, TypeElement typeElement) {
       // simpler check is possible (getAnnotation(kotlin.Metadata.class) != null) but we do not want to add kotlin dependency
       boolean isKotlinClass = false;
@@ -93,12 +95,11 @@ public class ActionClassUtils {
 
    public static Set<KeyPathEntity> getKeyPathEntities(Elements elementUtils, TypeElement typeElement) {
       final Set<KeyPathEntity> keyPathEntities = new HashSet<KeyPathEntity>();
-      final String keyPathSymbol = "$"; // TODO make '$' customizable
 
       for (Element element : elementUtils.getAllMembers(typeElement)) {
          if (element.getKind() == ElementKind.FIELD) {
             if (element.getAnnotation(KeyPath.class) != null) {
-               String prefixedKeyPath = keyPathSymbol + element.getAnnotation(KeyPath.class).value();
+               String prefixedKeyPath = ACTION_KEY_PATH_SYMBOL + element.getAnnotation(KeyPath.class).value();
 
                keyPathEntities.add(new KeyPathEntity(
                      prefixedKeyPath,
@@ -112,9 +113,7 @@ public class ActionClassUtils {
    }
 
    public static boolean checkHasKeyParams(String actionKey) {
-      final String keyParamSymbol = "$"; // TODO: make this customizable via gradle
-
-      return actionKey.contains(keyParamSymbol);
+      return actionKey.contains(ACTION_KEY_PATH_SYMBOL);
    }
 
    public static String resolveAccessibleFieldName(Elements elementUtils, TypeElement typeElement, String fieldName) {
