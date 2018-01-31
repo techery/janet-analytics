@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface Tracker {
 
-   String getKey();
+   String getKey(); // TODO: rename to id()
 
    void trackEvent(String action, Map<String, Object> data);
 }

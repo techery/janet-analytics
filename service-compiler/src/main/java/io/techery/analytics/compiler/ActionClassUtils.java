@@ -1,7 +1,9 @@
 package io.techery.analytics.compiler;
 
 import io.techery.analytics.compiler.model.AttributeEntity;
+import io.techery.analytics.compiler.model.KeyPathEntity;
 import io.techery.janet.analytics.annotation.Attribute;
+import io.techery.janet.analytics.annotation.KeyPath;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
@@ -15,6 +17,8 @@ import java.lang.annotation.Annotation;
 import java.util.*;
 
 public class ActionClassUtils {
+
+   public static final String ACTION_KEY_PATH_SYMBOL = "$";
 
    public static boolean checkIsKotlinClass(Elements elementUtils, TypeElement typeElement) {
       // simpler check is possible (getAnnotation(kotlin.Metadata.class) != null) but we do not want to add kotlin dependency
@@ -87,6 +91,29 @@ public class ActionClassUtils {
       }
 
       return attributes;
+   }
+
+   public static Set<KeyPathEntity> getKeyPathEntities(Elements elementUtils, TypeElement typeElement) {
+      final Set<KeyPathEntity> keyPathEntities = new HashSet<KeyPathEntity>();
+
+      for (Element element : elementUtils.getAllMembers(typeElement)) {
+         if (element.getKind() == ElementKind.FIELD) {
+            if (element.getAnnotation(KeyPath.class) != null) {
+               String prefixedKeyPath = ACTION_KEY_PATH_SYMBOL + element.getAnnotation(KeyPath.class).value();
+
+               keyPathEntities.add(new KeyPathEntity(
+                     prefixedKeyPath,
+                     resolveAccessibleFieldName(elementUtils, typeElement, element.getSimpleName().toString())
+               ));
+            }
+         }
+      }
+
+      return keyPathEntities;
+   }
+
+   public static boolean checkHasKeyParams(String actionKey) {
+      return actionKey.contains(ACTION_KEY_PATH_SYMBOL);
    }
 
    public static String resolveAccessibleFieldName(Elements elementUtils, TypeElement typeElement, String fieldName) {

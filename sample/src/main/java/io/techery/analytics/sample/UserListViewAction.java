@@ -2,9 +2,7 @@ package io.techery.analytics.sample;
 
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 
-import static io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM;
-
-@AnalyticsEvent(actionKey = "userlistviewaction:" + ACTION_PATH_PARAM, trackerIds = "tracker1")
+@AnalyticsEvent(actionKey = "userlistviewaction:$action_path", trackerIds = "tracker1")
 public class UserListViewAction extends SomeBaseAction {
 
    public UserListViewAction(String baseClassAttribValName) {

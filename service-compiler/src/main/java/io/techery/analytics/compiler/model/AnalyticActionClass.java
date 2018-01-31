@@ -3,9 +3,9 @@ package io.techery.analytics.compiler.model;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
 import io.techery.analytics.compiler.ActionClassUtils;
-import io.techery.janet.analytics.annotation.ActionPart;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 import io.techery.janet.analytics.annotation.AttributeMap;
+import io.techery.janet.analytics.annotation.KeyPath;
 
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static io.techery.analytics.compiler.ActionHelperGenerator.ACTION_HELPER_SUFFIX;
-import static io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM;
 
 public final class AnalyticActionClass {
 
@@ -26,7 +25,7 @@ public final class AnalyticActionClass {
    public final String[] trackerIds;
    public final boolean containsActionPathParam;
 
-   public String actionPartFieldName = null;
+   public Set<KeyPathEntity> keyPathEntities = new HashSet<KeyPathEntity>();
    public boolean containsAttributeMap;
    public Set<String> attributeMapAccessorNames = new HashSet<String>();
    public Set<AttributeEntity> attributeEntities = new HashSet<AttributeEntity>();
@@ -40,7 +39,7 @@ public final class AnalyticActionClass {
 
       action = typeElement.getAnnotation(AnalyticsEvent.class).actionKey();
       trackerIds = typeElement.getAnnotation(AnalyticsEvent.class).trackerIds();
-      containsActionPathParam = action.contains(ACTION_PATH_PARAM);
+      containsActionPathParam = ActionClassUtils.checkHasKeyParams(action);
 
       obtainAttributes(elementUtils, typeElement);
       containsAttributeMap = !attributeMapAccessorNames.isEmpty();
@@ -51,11 +50,10 @@ public final class AnalyticActionClass {
       if (superTypeElement != null) {
          obtainAttributes(elementUtils, superTypeElement);
       }
+
       if (containsActionPathParam) {
-         if (actionPartFieldName == null) {
-            if (ActionClassUtils.checkHasAnnotatedField(elementUtils, typeElement, ActionPart.class)) {
-               actionPartFieldName = ActionClassUtils.getAnnotatedFieldName(elementUtils, typeElement, ActionPart.class);
-            }
+         if (ActionClassUtils.checkHasAnnotatedField(elementUtils, typeElement, KeyPath.class)) {
+            keyPathEntities.addAll(ActionClassUtils.getKeyPathEntities(elementUtils, typeElement));
          }
       }
       if (ActionClassUtils.checkHasAnnotatedField(elementUtils, typeElement, AttributeMap.class)) {

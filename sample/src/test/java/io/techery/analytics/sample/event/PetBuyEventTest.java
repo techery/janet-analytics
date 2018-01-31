@@ -21,7 +21,7 @@ public class PetBuyEventTest extends BaseTest {
       PetBuyEvent event = new PetBuyEvent(pet);
 
       analyticsPipe.send(event);
-      verify(tracker).trackEvent(eq("user_bought_pet:dog"),
+      verify(tracker).trackEvent(eq("user_bought_pet:dog:mall"),
             argThat(argument ->
                   argument.containsKey("pet_birth_date") &&
                         argument.get("pet_birth_date").equals("May 13, 2015") &&
