@@ -2,14 +2,14 @@ package io.techery.analytics.service;
 
 import io.techery.janet.JanetInternalException;
 import io.techery.janet.analytics.ActionHelper;
-import io.techery.janet.analytics.AnalyticActionHelperFactory;
+import io.techery.janet.analytics.ActionHelperFactory;
 
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FACTORY_CLASS_NAME;
-import static io.techery.janet.analytics.AnalyticActionHelperFactory.HELPERS_FACTORY_CLASS_SIMPLE_NAME;
+import static io.techery.janet.analytics.ActionHelperFactory.HELPERS_FACTORY_CLASS_NAME;
+import static io.techery.janet.analytics.ActionHelperFactory.HELPERS_FACTORY_CLASS_SIMPLE_NAME;
 
 public class AnalyticActionHelperCache {
 
@@ -17,7 +17,7 @@ public class AnalyticActionHelperCache {
 
    private final Map<Class, ActionHelper> helpersCache = new HashMap<Class, ActionHelper>();
 
-   private AnalyticActionHelperFactory actionHelperFactory;
+   private ActionHelperFactory actionHelperFactory;
 
    public static AnalyticActionHelperCache getInstance() {
       if (instance == null) {
@@ -49,9 +49,8 @@ public class AnalyticActionHelperCache {
 
    private void loadActionHelperFactory() {
       try {
-         @SuppressWarnings("unchecked")
-         final Class<AnalyticActionHelperFactory> factoryClass =
-               (Class<AnalyticActionHelperFactory>) Class.forName(HELPERS_FACTORY_CLASS_NAME);
+         @SuppressWarnings("unchecked") final Class<ActionHelperFactory> factoryClass =
+               (Class<ActionHelperFactory>) Class.forName(HELPERS_FACTORY_CLASS_NAME);
          actionHelperFactory = factoryClass.newInstance();
       } catch (Exception exception) {
          throw new JanetInternalException(String.format(Locale.US,

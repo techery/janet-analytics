@@ -31,7 +31,7 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
    }
 
    private void generateHelperClass(AnalyticActionClass actionClass) {
-      final TypeSpec.Builder classBuilder = TypeSpec.classBuilder(actionClass.helperName.simpleName())
+      final TypeSpec.Builder classBuilder = TypeSpec.classBuilder(actionClass.helperClassName.simpleName())
             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
             .addAnnotation(AnnotationSpec.builder(Generated.class)
                   .addMember("value", "$S", AnalyticActionProcessor.class.getCanonicalName())

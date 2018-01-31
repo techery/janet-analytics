@@ -1,0 +1,40 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.13"
+    }
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "net.ltgt.apt"
+
+sourceSets.main.java.srcDir new File(buildDir, "/generated")
+idea {
+    module {
+        // Marks the already(!) added srcDir as "generated"
+        generatedSourceDirs += file("build/generated")
+    }
+}
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+compileJava {
+    options.compilerArgs += [
+            '-Ajanet.analytics.module.library=true'
+    ]
+}
+
+dependencies {
+    implementation project(":api")
+
+    apt project(":service-compiler")
+}

@@ -27,7 +27,6 @@ public class AnalyticsService extends ActionService {
    protected <A> void sendInternal(ActionHolder<A> holder) throws JanetException {
       try {
          final A action = holder.action();
-//         final ActionHelper<A> actionHelper = actionHelperCache.getActionHelper(action.getClass());
          final ActionHelper actionHelper = actionHelperCache.getActionHelper(action.getClass());
 
          for (String trackerId : actionHelper.getTrackerIds()) {

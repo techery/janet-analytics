@@ -19,7 +19,7 @@ public final class AnalyticActionClass {
    public final TypeElement typeElement;
    public final TypeName typeName;
    public final String packageName;
-   public final ClassName helperName;
+   public final ClassName helperClassName;
 
    public final String action;
    public final String[] trackerIds;
@@ -35,7 +35,7 @@ public final class AnalyticActionClass {
 
       typeName = TypeName.get(typeElement.asType());
       packageName = elementUtils.getPackageOf(typeElement).getQualifiedName().toString();
-      helperName = ClassName.get(packageName, typeElement.getSimpleName().toString() + ACTION_HELPER_SUFFIX);
+      helperClassName = ClassName.get(packageName, typeElement.getSimpleName().toString() + ACTION_HELPER_SUFFIX);
 
       action = typeElement.getAnnotation(AnalyticsEvent.class).actionKey();
       trackerIds = typeElement.getAnnotation(AnalyticsEvent.class).trackerIds();
