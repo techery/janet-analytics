@@ -6,7 +6,7 @@
 
 Usually analytics SDK (Adobe, Google's Firebase, Facebook, Amazon etc) expects data in a predefined format, which differs between libraries. It brings several complexities:
 
- * ❗ ️switching between various analytics service vendors is difficult, error-prone and a lot of mechanical work;
+ * ❗ switching between various analytics service vendors is difficult, error-prone and a lot of mechanical work;
  * ❗ using two or more analytics SDK's in one project is a headache as it requires a lot of boilerplate code;
  * ❗ your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into suitable format
 
