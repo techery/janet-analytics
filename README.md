@@ -4,11 +4,11 @@
 
 ### Motivation
 
-Usually analytics SDK (Adobe, Google's Firebase, Facebook, Amazon etc) expects data in a predefined format, which differs between libraries. It brings several complexities:
+Usually analytics SDK (Adobe, Google's Firebase, Facebook, Amazon, etc.) expects data in a predefined format, which differs between libraries. It brings several complexities:
 
- * ❗ switching between various analytics service vendors is difficult, error-prone and a lot of mechanical work;
- * ❗ using two or more analytics SDK's in one project is a headache as it requires a lot of boilerplate code;
- * ❗ your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into suitable format
+ * switching between various analytics service vendors is difficult, error-prone and a lot of mechanical work;
+ * using two or more analytics SDK's in one project is a headache as it requires a lot of boilerplate code;
+ * your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into suitable format.
 
 ##### Typical issue
 
@@ -18,7 +18,7 @@ Imagine you have a user interaction, where you want to log some data:
 public class PetBuyPresenter {
 
 	@Inject SomeAnalyticsSdk analyticsSdk;
-
+	...
 	public void onPetBuyButtonClick(PetEntity pet) {
 		...
 		analyticsSdk.sendEvent(pet); // <-- problem
@@ -28,11 +28,11 @@ public class PetBuyPresenter {
 
 The problem is `SomeAnalyticsSdk.sendEvent()` method doesn't accept our entity directly. Instead, it wants a `String eventName` and a `Map<String, String> eventData`. On the other side - `PetEntity` has a number of characteristics, stored as `int`'s and `String`'s and, of cource, a `Date birthDate` field.
 
-You can write some code to re-format our data and feed it to `sendEvent` method. But:
+You can write some code to re-format our data and feed it to `sendEvent` method. But!
 
- * ⚠️ what if re-formatting code grows with time and takes up more and more space in your presenter?
- * ⚠️ what if we have some other presenter, where we also have to send similar event?
- * ⚠️ testing re-formatting logic as a part of presenter might be difficult or impossible by number of reasons.
+ * ⚠️ What if re-formatting code grows with time and takes up more and more space in your presenter?
+ * ⚠️ What if we have some other presenter, where we also have to send similar event?
+ * ⚠️ Testing re-formatting logic as a part of presenter might be difficult or impossible by number of reasons.
 
 ##### Solution Example
 
@@ -40,7 +40,7 @@ This library deals with all of these complexities in a way that's shown below:
 
  * ✅ quickly add/remove events for multiple SDKs along with new SDKs;
  * ✅ extract analytics data from business/view logic;
- * ✅ isolate analytics data convertion;
+ * ✅ isolate analytics data convertion.
 
 ```java
 public class PetBuyPresenter {
@@ -60,7 +60,7 @@ public class PetBuyPresenter {
 
 ##### 1. Setup tracker
 
-Create implementation of `Tracker` interface for concrete analytics SDK:
+Create implementation of `Tracker` interface for particular analytics SDK:
 
 ```java
 public class SomeAnalyticsTracker implements Tracker {
@@ -124,30 +124,30 @@ public class BuyPetEvent {
 `@AnalyticsEvent` annotation - flags class as the one to be processed by `AnalyticsService` with info:
 
  * `actionKey` - name of event. Different analytics SDKs are similar to have param of this kind for every event;
- * `trackerIds` - array of trackers' identifiers, where this action should be processed by.
+ * `trackerIds` - array of trackers' identifiers, where this action should be processed.
 
 Annotations for class fields:
 
  * `@KeyPath` – use this annotation if you want to format your `actionKey` at runtime;
  * `@Attribute` - annotation `value` and field value will form a key-value pair in `data` map that tracker recieves;
- * `@AttributeMap` – sometimes it might be easier to form a map than to create a [big] number of annotated fields, merges with attributes.
+ * `@AttributeMap` – sometimes it might be easier to form a map than to create a [big] number of annotated fields. This map contents will be merged with attributes.
 
 For more info please see `sample` project code.
 For more sophisticated janet-usage - please see samples from [Janet repo](https://github.com/techery/janet) and Janet's [CommandActionService](https://github.com/techery/janet-command)
 
 #### Additional Features
 
- * `Kotlin` is supported;
- * Testable, refer to [sample tests](sample/src/test/java/io/techery/analytics/sample)
+ * `Kotlin` is supported.
+ * Testable, refer to [sample tests](sample/src/test/java/io/techery/analytics/sample).
 
 #### Limitations
 
- * if event classes involve inheritance - only bottom-most inheritor's instance can be sent to service;
- * event classes should not declare annotated fields as `private` - default visibility is applicable;
+ * If event classes involve inheritance - only bottom-most inheritor's instance can be sent to service.
+ * Event classes should not declare annotated fields as `private` - default visibility is applicable.
 
 #### Advanced bits
 
- * in multi-module project using javac option `'-Ajanet.analytics.module.library=true'` is a **must**, while in main module (e.g. your typical Android-project `:app` module) - this parameter should not be specified
+ * In multi-module project using javac option `'-Ajanet.analytics.module.library=true'` is a **must**, while in main module (e.g. your typical Android-project `:app` module) - this parameter should not be specified.
 
 ### Download
 
