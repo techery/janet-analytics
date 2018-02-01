@@ -22,7 +22,7 @@ public class BaseTest {
    @Before
    public void setUp() throws Exception {
       tracker = mock(Tracker.class);
-      when(tracker.getKey()).thenReturn(MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY);
+      when(tracker.id()).thenReturn(MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY);
 
       janet = new Janet.Builder().addService(new AnalyticsService(provideTrackers())).build();
       analyticsPipe = janet.createPipe(BaseEvent.class);

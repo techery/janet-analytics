@@ -10,13 +10,13 @@ public class MyAnalyticsSdkTracker implements Tracker {
    public static final String MYANALYTICSSDK_TRACKER_KEY = "MyAnalyticsSdkTrackerKey";
 
    @Override
-   public String getKey() {
+   public String id() {
       return MYANALYTICSSDK_TRACKER_KEY;
    }
 
    @Override
-   public void trackEvent(String action, Map<String, Object> data) {
-      MyAnalyticsSdk.sendEvent(action, prepareData(data));
+   public void trackEvent(String actionKey, Map<String, Object> data) {
+      MyAnalyticsSdk.sendEvent(actionKey, prepareData(data));
    }
 
    private Map<String, String> prepareData(Map<String, Object> data) {

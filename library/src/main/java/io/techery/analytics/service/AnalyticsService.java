@@ -19,7 +19,7 @@ public class AnalyticsService extends ActionService {
 
    public AnalyticsService(List<Tracker> trackers) {
       for (Tracker tracker : trackers) {
-         trackersMap.put(tracker.getKey(), tracker);
+         trackersMap.put(tracker.id(), tracker);
       }
    }
 
