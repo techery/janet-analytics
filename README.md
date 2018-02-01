@@ -68,13 +68,13 @@ Knowing needs of your analytics vendor's SDK create implementation of `Tracker` 
     public static final String MYANALYTICSSDK_TRACKER_KEY = "MyAnalyticsSdkTrackerKey";
     
     	@Override
-        public String getKey() {
+        public String id() {
         	return MYANALYTICSSDK_TRACKER_KEY;
         }
         
         @Override
-        public void trackEvent(String action, Map<String, Object> data) {
-        	myAnalyticsSdk.sendEvent(action, prepareData(data));
+        public void trackEvent(String actionKey, Map<String, Object> data) {
+        	myAnalyticsSdk.sendEvent(actionKey, prepareData(data));
         }
         
         private Map<String, String> prepareData(Map<String, Object> data) {
@@ -95,11 +95,11 @@ Knowing needs of your analytics vendor's SDK create implementation of `Tracker` 
 ##### 3. Create class for analytic event
 
 ```java
-  @AnalyticsEvent(actionKey = "user_bought_pet" + ACTION_PATH_PARAM,
+  @AnalyticsEvent(actionKey = "user_bought_pet:$action_key_param",
   		trackerIds = { MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY })
   public class BuyPetEvent {
 
-     @ActionPart
+     @KeyPath("action_key_param")
      String petType;
 
      @Attribute("pet_birth_date")
@@ -122,7 +122,7 @@ Knowing needs of your analytics vendor's SDK create implementation of `Tracker` 
 
 Annotations for class fields:
 
- * `@ActionPart` use this annotation in case if you want to format your actionKey at runtime
+ * `@KeyPath` use this annotation in case if you want to format your actionKey at runtime
  * `@Attribute` - attribute's value and field value will form a key-value pair in `data` map that tracker recieves
  * `@AttributeMap` same as above but it might be easier to form a map than to create a [big] number of annotated fields
 
@@ -132,7 +132,7 @@ For more sophisticated janet-usage - please see samples from [Janet repo](https:
 ### Features
 
  * Event-classes can be written in Kotlin
- * Testable: for sample, refer to sample tests (will be implemented in future)
+ * Testable: for sample, refer to sample tests
  * multiple actionKey parameters are supported
 
 ### Limitations
