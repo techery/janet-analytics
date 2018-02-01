@@ -6,9 +6,9 @@
 
 Usually analytics SDK (Adobe, Google's Firebase, Facebook, Amazon etc) expects data in a predefined format, which differs between libraries. It brings several complexities:
 
- ❗ switching between various analytics service vendors is difficult, error-prone and a lot of mechanical work;
- ❗ using two or more analytics SDK's in one project is a headache as it requires a lot of boilerplate code;
- ❗ your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into suitable format
+ * ❗ switching between various analytics service vendors is difficult, error-prone and a lot of mechanical work;
+ * ❗ using two or more analytics SDK's in one project is a headache as it requires a lot of boilerplate code;
+ * ❗ your analytics data source and SDK are likely to have totally different structure forcing you to place somewhere your code that collects data and organizes it into suitable format
 
 ##### Typical issue
 
@@ -30,17 +30,17 @@ The problem is `SomeAnalyticsSdk.sendEvent()` method doesn't accept our entity d
 
 You can write some code to re-format our data and feed it to `sendEvent` method. But:
 
- ⚠️ what if re-formatting code grows with time and takes up more and more space in your presenter?
- ⚠️ what if we have some other presenter, where we also have to send similar event?
- ⚠️ testing re-formatting logic as a part of presenter might be difficult or impossible by number of reasons.
+ * ⚠️ what if re-formatting code grows with time and takes up more and more space in your presenter?
+ * ⚠️ what if we have some other presenter, where we also have to send similar event?
+ * ⚠️ testing re-formatting logic as a part of presenter might be difficult or impossible by number of reasons.
 
 ##### Solution Example
 
 This library deals with all of these complexities in a way that's shown below:
 
- ✅ quickly add/remove events for multiple SDKs along with new SDKs;
- ✅ extract analytics data from business/view logic;
- ✅ isolate analytics data convertion;
+ * ✅ quickly add/remove events for multiple SDKs along with new SDKs;
+ * ✅ extract analytics data from business/view logic;
+ * ✅ isolate analytics data convertion;
 
 ```java
 public class PetBuyPresenter {
