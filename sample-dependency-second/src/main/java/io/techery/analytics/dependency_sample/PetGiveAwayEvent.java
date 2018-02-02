@@ -1,19 +1,17 @@
 package io.techery.analytics.dependency_sample;
 
-import io.techery.janet.analytics.annotation.ActionPart;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 import io.techery.janet.analytics.annotation.Attribute;
 import io.techery.janet.analytics.annotation.AttributeMap;
+import io.techery.janet.analytics.annotation.KeyPath;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.techery.janet.analytics.annotation.ActionPart.ACTION_PATH_PARAM;
-
-@AnalyticsEvent(actionKey = "user_adopted_pet:" + ACTION_PATH_PARAM, trackerIds = { "tracker0" })
+@AnalyticsEvent(actionKey = "user_adopted_pet:$pet_type", trackerIds = { "tracker0" })
 public class PetGiveAwayEvent {
 
-   @ActionPart
+   @KeyPath("pet_type")
    String petType;
 
    @Attribute("pet_birth_date")
