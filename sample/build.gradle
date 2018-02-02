@@ -49,7 +49,7 @@ kapt {
 }
 
 dependencies {
-    implementation project(":library")
+    implementation project(":service")
     implementation project(":sample-dependency")
     implementation project(":sample-dependency-second")
     kapt project(":service-compiler")

@@ -1,6 +1,6 @@
 include 'api'
 include 'service-compiler'
-include 'library'
+include 'service'
 include 'sample'
 include 'sample-dependency'
 include 'sample-dependency-second'
