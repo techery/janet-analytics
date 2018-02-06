@@ -7,17 +7,14 @@ import io.techery.janet.analytics.ActionHelper;
 import io.techery.janet.analytics.Tracker;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class AnalyticsService extends ActionService {
 
    private final Map<String, Tracker> trackersMap = new HashMap<String, Tracker>();
    private final AnalyticActionHelperCache actionHelperCache = AnalyticActionHelperCache.getInstance();
 
-   public AnalyticsService(List<Tracker> trackers) {
+   public AnalyticsService(Collection<Tracker> trackers) {
       for (Tracker tracker : trackers) {
          trackersMap.put(tracker.id(), tracker);
       }
