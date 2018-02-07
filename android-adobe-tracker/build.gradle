@@ -1,0 +1,42 @@
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 22
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+        }
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+}
+
+dependencies {
+    compile project(':api')
+    compile project(':android-lifecycle-consumer')
+    compile 'com.adobe.mobile:adobeMobileLibrary:4.13.7'
+}
