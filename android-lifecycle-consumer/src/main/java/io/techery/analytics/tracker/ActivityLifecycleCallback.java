@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ActivityLifecycleCallback implements Application.ActivityLifecycleCallbacks {
 
-   protected final List<ActivityLifecycleConsumer> lifecycleConsumers = new ArrayList<>();
+   protected final List<ActivityLifecycleConsumer> lifecycleConsumers = new ArrayList<ActivityLifecycleConsumer>();
 
    public ActivityLifecycleCallback(Collection<ActivityLifecycleConsumer> lifecycleConsumers) {
       this.lifecycleConsumers.addAll(lifecycleConsumers);
