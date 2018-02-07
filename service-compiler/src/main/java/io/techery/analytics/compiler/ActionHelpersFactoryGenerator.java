@@ -95,6 +95,8 @@ public class ActionHelpersFactoryGenerator extends CodeGenerator<AnalyticActionC
             .append("For {@link AnalyticsService}'s internal use only,\n")
             .append("in case if client code needs to make use of\n")
             .append("helper (e.g. for wrapper service) - use {@link AnalyticActionHelperCacheImpl}\n")
+            .append("\n")
+            .append("\tDo not edit")
             .toString();
    }
 }

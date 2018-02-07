@@ -53,6 +53,8 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
       return new StringBuilder()
             .append(String.format(Locale.US, "Helper class generated based on %s\n", actionClass.typeName.toString()))
             .append("Utilizes analytic event class content in a format, suitable for {@link AnalyticsService}\n")
+            .append("\n")
+            .append("\tDo not edit")
             .toString();
    }
 
@@ -115,7 +117,8 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
 
    private CodeBlock makeDataMapCodeBlock(AnalyticActionClass actionClass) {
       final CodeBlock.Builder builder = CodeBlock.builder()
-       .addStatement("$T<$T, $T> data = new $T<>()", HashMap.class, String.class, Object.class, HashMap.class);
+       .addStatement("$T<$T, $T> data = new $T<$T, $T>()", HashMap.class, String.class, Object.class, HashMap.class,
+             String.class, Object.class);
 
       if (actionClass.containsAttributeMap) {
          builder.addStatement("//noinspection CollectionAddAllCanBeReplacedWithConstructor");
