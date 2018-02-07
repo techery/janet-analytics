@@ -1,6 +1,7 @@
 include 'api'
 include 'service-compiler'
 include 'service'
+include 'android-lifecycle-consumer'
 include 'sample'
 include 'sample-dependency'
 include 'sample-dependency-second'
