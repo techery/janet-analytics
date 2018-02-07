@@ -5,6 +5,7 @@ include 'android-apptentive-tracker'
 include 'android-adobe-tracker'
 include 'android-lifecycle-consumer'
 include 'sample'
+include 'sample-common'
+include 'android-sample'
 include 'sample-dependency'
 include 'sample-dependency-second'
-

@@ -1,8 +1,8 @@
 package io.techery.analytics.sample;
 
 import io.techery.analytics.sample.event.PetBuyEvent;
-import io.techery.analytics.sample.model.PetEntity;
-import io.techery.analytics.sample.model.PetType;
+import io.techery.analytics.sample_common.entity.PetEntity;
+import io.techery.analytics.sample_common.entity.PetType;
 import io.techery.analytics.service.AnalyticsService;
 import io.techery.janet.ActionService;
 import io.techery.janet.Janet;

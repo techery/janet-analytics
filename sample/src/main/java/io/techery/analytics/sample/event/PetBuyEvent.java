@@ -1,7 +1,8 @@
 package io.techery.analytics.sample.event;
 
 import io.techery.analytics.sample.MyAnalyticsSdkTracker;
-import io.techery.analytics.sample.model.PetEntity;
+import io.techery.analytics.sample_common.entity.PetEntity;
+import io.techery.analytics.sample_common.janet.action.BaseAnalyticsAction;
 import io.techery.janet.analytics.annotation.AnalyticsEvent;
 import io.techery.janet.analytics.annotation.Attribute;
 import io.techery.janet.analytics.annotation.AttributeMap;
@@ -13,7 +14,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @AnalyticsEvent(actionKey = "user_bought_pet:$pet_type:$store_type", trackerIds = { MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY })
-public class PetBuyEvent implements BaseEvent {
+public class PetBuyEvent implements BaseAnalyticsAction {
 
    @KeyPath("pet_type")
    String petType;

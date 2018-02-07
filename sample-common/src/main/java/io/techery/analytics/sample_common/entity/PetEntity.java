@@ -1,4 +1,4 @@
-package io.techery.analytics.sample.model;
+package io.techery.analytics.sample_common.entity;
 
 import java.util.Calendar;
 

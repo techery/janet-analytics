@@ -15,4 +15,6 @@ dependencies {
     api project(":api")
 
     api 'com.github.techery:janet:1.0.7'
+
+    api 'javax.annotation:jsr250-api:1.0'
 }
