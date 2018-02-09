@@ -1,8 +1,8 @@
 package io.techery.analytics.sample.event;
 
 import io.techery.analytics.sample.BaseTest;
-import io.techery.analytics.dependency_sample.entity.PetEntity;
-import io.techery.analytics.dependency_sample.entity.PetType;
+import io.techery.analytics.sample_common.entity.PetEntity;
+import io.techery.analytics.sample_common.entity.PetType;
 import org.junit.Test;
 
 import java.util.Calendar;
