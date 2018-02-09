@@ -1,4 +1,4 @@
-package io.techery.analytics.android_sample.janet.action;
+package io.techery.analytics.sample.android.action;
 
 import io.techery.analytics.sample_common.entity.PetEntity;
 import io.techery.analytics.tracker.AdobeTracker;

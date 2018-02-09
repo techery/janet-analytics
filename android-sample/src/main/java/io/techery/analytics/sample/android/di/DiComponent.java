@@ -1,9 +1,9 @@
-package io.techery.analytics.android_sample.di;
+package io.techery.analytics.sample.android.di;
 
 import android.content.Context;
 import dagger.Component;
-import io.techery.analytics.android_sample.App;
-import io.techery.analytics.android_sample.MainActivity;
+import io.techery.analytics.sample.android.App;
+import io.techery.analytics.sample.android.MainActivity;
 import io.techery.analytics.sample_common.janet.AnalyticsInteractor;
 import io.techery.analytics.tracker.ActivityLifecycleCallback;
 import io.techery.analytics.tracker.ActivityLifecycleConsumer;

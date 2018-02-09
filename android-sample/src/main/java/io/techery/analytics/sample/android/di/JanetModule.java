@@ -1,4 +1,4 @@
-package io.techery.analytics.android_sample.di;
+package io.techery.analytics.sample.android.di;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,4 +1,4 @@
-package io.techery.analytics.android_sample;
+package io.techery.analytics.sample.android;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,9 +7,8 @@ import android.widget.RadioGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.techery.analytics.android_sample.janet.action.AdobePetSellEvent;
-import io.techery.analytics.android_sample.janet.action.ApptentivePetSellEvent;
-import io.techery.analytics.androidsample.R;
+import io.techery.analytics.sample.android.action.AdobePetSellEvent;
+import io.techery.analytics.sample.android.action.ApptentivePetSellEvent;
 import io.techery.analytics.sample_common.entity.PetEntity;
 import io.techery.analytics.sample_common.entity.PetType;
 import io.techery.analytics.sample_common.janet.AnalyticsInteractor;
