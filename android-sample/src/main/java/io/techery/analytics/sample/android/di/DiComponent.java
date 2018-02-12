@@ -2,11 +2,8 @@ package io.techery.analytics.sample.android.di;
 
 import android.content.Context;
 import dagger.Component;
-import io.techery.analytics.sample.android.App;
 import io.techery.analytics.sample.android.MainActivity;
 import io.techery.analytics.sample_common.janet.AnalyticsInteractor;
-import io.techery.analytics.tracker.ActivityLifecycleCallback;
-import io.techery.analytics.tracker.ActivityLifecycleConsumer;
 import io.techery.janet.Janet;
 import io.techery.janet.analytics.Tracker;
 
@@ -20,12 +17,8 @@ import java.util.Set;
 })
 public interface DiComponent {
 
-   void inject(App app);
-
    Context context();
    Set<Tracker> trackers();
-   Set<ActivityLifecycleConsumer> lifecycleConsumers();
-   ActivityLifecycleCallback activityLifecycleCallback();
 
    void inject(MainActivity activity);
    Janet janet();

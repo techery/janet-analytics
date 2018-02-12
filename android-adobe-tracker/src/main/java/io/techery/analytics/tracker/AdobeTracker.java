@@ -1,6 +1,7 @@
 package io.techery.analytics.tracker;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 import com.adobe.mobile.Analytics;
 import com.adobe.mobile.Config;
@@ -8,11 +9,15 @@ import io.techery.janet.analytics.Tracker;
 
 import java.util.Map;
 
-public class AdobeTracker implements Tracker, ActivityLifecycleConsumer {
+public class AdobeTracker implements Tracker, Application.ActivityLifecycleCallbacks {
 
    public static final String KEY = "JANET_ADOBE_TRACKER";
 
    protected boolean appContextSet = false;
+
+   public AdobeTracker(Application application) {
+      application.registerActivityLifecycleCallbacks(this);
+   }
 
    @Override
    public String id() {
@@ -25,7 +30,7 @@ public class AdobeTracker implements Tracker, ActivityLifecycleConsumer {
    }
 
    @Override
-   public void onCreate(Activity activity, Bundle bundle) {
+   public void onActivityCreated(Activity activity, Bundle bundle) {
       if (!appContextSet) {
          appContextSet = true;
          Config.setContext(activity.getApplicationContext());
@@ -33,28 +38,28 @@ public class AdobeTracker implements Tracker, ActivityLifecycleConsumer {
    }
 
    @Override
-   public void onStart(Activity activity) {
+   public void onActivityStarted(Activity activity) {
    }
 
    @Override
-   public void onResume(Activity activity) {
+   public void onActivityResumed(Activity activity) {
       Config.collectLifecycleData(activity);
    }
 
    @Override
-   public void onPause(Activity activity) {
+   public void onActivityPaused(Activity activity) {
       Config.pauseCollectingLifecycleData();
    }
 
    @Override
-   public void onStop(Activity activity) {
+   public void onActivityStopped(Activity activity) {
    }
 
    @Override
-   public void onSaveInstanceState(Activity activity, Bundle bundle) {
+   public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
    }
 
    @Override
-   public void onDestroy(Activity activity) {
+   public void onActivityDestroyed(Activity activity) {
    }
 }
