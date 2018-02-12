@@ -51,7 +51,6 @@ dependencies {
     implementation project(":service")
     implementation project(":sample-dependency")
     implementation project(":sample-common")
-    implementation project(":sample-dependency-second")
     kapt project(":service-compiler")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
