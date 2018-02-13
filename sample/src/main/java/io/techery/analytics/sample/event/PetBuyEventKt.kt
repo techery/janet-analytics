@@ -11,15 +11,18 @@ import java.text.DateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-@AnalyticsEvent(actionKey = "user_bought_pet\$pet_type",
+@AnalyticsEvent(actionKey = "user_bought_pet:\$pet_type:\$store_type",
         trackerIds = arrayOf(MyAnalyticsSdkTracker.MYANALYTICSSDK_TRACKER_KEY))
 class PetBuyEventKt(petEntity: PetEntity) : BaseAnalyticsAction {
 
     @KeyPath("pet_type")
     val petType: String = petEntity.petType.name.toLowerCase(Locale.US)
 
+    @KeyPath("store_type")
+    val storeType: String = "mall"
+
     @Attribute("pet_birth_date")
-    val petBirthDate: String = DateFormat.getDateInstance().format(petEntity.birthDate)
+    val petBirthDate: String = DateFormat.getDateInstance().format(petEntity.birthDate.time)
 
     @AttributeMap
     val data: HashMap<String, Any> = HashMap()

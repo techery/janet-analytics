@@ -22,6 +22,7 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+apply plugin: 'application'
 apply plugin: "idea"
 apply plugin: "java"
 apply plugin: "kotlin"
@@ -33,6 +34,8 @@ idea {
         generatedSourceDirs += files('build/generated/source/kapt/main', 'build/generated/source/kaptKotlin/main')
     }
 }
+
+mainClassName = "io.techery.analytics.sample.Example"
 
 compileJava {
     sourceCompatibility = 1.8

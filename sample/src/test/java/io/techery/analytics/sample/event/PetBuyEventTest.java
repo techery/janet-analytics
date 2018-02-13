@@ -29,4 +29,21 @@ public class PetBuyEventTest extends BaseTest {
                         argument.get("pet_name").equals("Moohtar")
             ));
    }
+
+   @Test
+   public void eventKotlinSentWithCorrectData() {
+      Calendar petBirthDate = Calendar.getInstance();
+      petBirthDate.set(2015, 4, 13); // formatted date will be "May 13, 2015
+      PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
+      PetBuyEventKt event = new PetBuyEventKt(pet);
+
+      analyticsPipe.send(event);
+      verify(tracker).trackEvent(eq("user_bought_pet:dog:mall"),
+            argThat(argument ->
+                  argument.containsKey("pet_birth_date") &&
+                        argument.get("pet_birth_date").equals("May 13, 2015") &&
+                        argument.containsKey("pet_name") &&
+                        argument.get("pet_name").equals("Moohtar")
+            ));
+   }
 }

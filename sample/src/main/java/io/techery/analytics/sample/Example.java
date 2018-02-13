@@ -23,20 +23,11 @@ public class Example {
       Janet janet = new Janet.Builder().addService(actionService).build();
 
       Calendar petBirthDate = Calendar.getInstance();
-      petBirthDate.set(Calendar.YEAR, 2015);
+      petBirthDate.set(Calendar.YEAR, 2017);
       PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
       PetBuyEvent event = new PetBuyEvent(pet);
 
       janet.createPipe(PetBuyEvent.class).send(event);
-   }
-
-   private static String printArray(String[] array) {
-      StringBuilder stringBuilder = new StringBuilder("[");
-      for (String element : array) {
-         stringBuilder.append("\"").append(element).append("\", ");
-      }
-      stringBuilder.append("]");
-      return stringBuilder.toString().replace(", ]", "]");
    }
 
    private List<Tracker> provideTrackers() {
