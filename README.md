@@ -115,10 +115,10 @@ public class BuyPetEvent {
     @AttributeMap
     Map<String, Object> data = new HashMap<>();
 
-    public BuyPetEvent(PetEntity petEntity) {
-        petType = petEntity.petType.name().toLowerCase(Locale.US);
-        petBirthDate = DateFormat.getDateInstance().format(petEntity.birthDate);
-        data.put("pet_name", petEntity.name);
+    public BuyPetEvent(PetEntity pet) {
+        petType = pet.petType.name().toLowerCase(Locale.US); // assuming PetType is a enum
+        petBirthDate = DateFormat.getDateInstance().format(pet.birthDate);
+        data.put("pet_name", pet.name);
     }
 }
 ```

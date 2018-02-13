@@ -5,18 +5,18 @@ import io.techery.janet.analytics.Tracker;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyAnalyticsSdkTracker implements Tracker {
+public class SomeAnalyticsTracker implements Tracker {
 
-   public static final String MYANALYTICSSDK_TRACKER_KEY = "MyAnalyticsSdkTrackerKey";
+   public static final String ID = "MyAnalyticsSdkTrackerKey";
 
    @Override
    public String id() {
-      return MYANALYTICSSDK_TRACKER_KEY;
+      return ID;
    }
 
    @Override
    public void trackEvent(String actionKey, Map<String, Object> data) {
-      MyAnalyticsSdk.sendEvent(actionKey, prepareData(data));
+      SomeAnalyticsSdk.sendEvent(actionKey, prepareData(data));
    }
 
    private Map<String, String> prepareData(Map<String, Object> data) {

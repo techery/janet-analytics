@@ -11,14 +11,14 @@ import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
-public class PetBuyEventTest extends BaseTest {
+public class BuyPetEventTest extends BaseTest {
 
    @Test
    public void eventSentWithCorrectData() {
       Calendar petBirthDate = Calendar.getInstance();
       petBirthDate.set(2015, 4, 13); // formatted date will be "May 13, 2015
       PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
-      PetBuyEvent event = new PetBuyEvent(pet);
+      BuyPetEvent event = new BuyPetEvent(pet);
 
       analyticsPipe.send(event);
       verify(tracker).trackEvent(eq("user_bought_pet:dog:mall"),
@@ -35,7 +35,7 @@ public class PetBuyEventTest extends BaseTest {
       Calendar petBirthDate = Calendar.getInstance();
       petBirthDate.set(2015, 4, 13); // formatted date will be "May 13, 2015
       PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
-      PetBuyEventKt event = new PetBuyEventKt(pet);
+      BuyPetEventKt event = new BuyPetEventKt(pet);
 
       analyticsPipe.send(event);
       verify(tracker).trackEvent(eq("user_bought_pet:dog:mall"),
