@@ -39,8 +39,10 @@ You can write some code to reformat our data and feed it to the `sendEvent` meth
 This library helps you overcome these complexities the way shown below. It allows to:
 
  * ✅ quickly add/remove events for multiple SDKs along with new SDKs
+ * ✅ reuse analytics event/data conversion code
  * ✅ extract the analytics data from the business/view logic
  * ✅ isolate the analytics data convertion
+ * ✅ cover the analytics data convertion with unit tests
 
 ```java
 public class PetBuyPresenter {
