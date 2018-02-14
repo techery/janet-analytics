@@ -36,11 +36,11 @@ You can write some code to reformat our data and feed it to the `sendEvent` meth
 
 ##### Solution example
 
-This library deals with all of these complexities the way shown below:
+This library helps you overcome these complexities the way shown below. It allows to:
 
- * ✅ quickly adds/removes events for multiple SDKs along with new SDKs
- * ✅ extracts the analytics data from the business/view logic
- * ✅ isolates the analytics data convertion
+ * ✅ quickly add/remove events for multiple SDKs along with new SDKs
+ * ✅ extract the analytics data from the business/view logic
+ * ✅ isolate the analytics data convertion
 
 ```java
 public class PetBuyPresenter {
