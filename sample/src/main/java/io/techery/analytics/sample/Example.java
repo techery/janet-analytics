@@ -1,9 +1,12 @@
 package io.techery.analytics.sample;
 
-import io.techery.analytics.sample.event.PetBuyEvent;
-import io.techery.analytics.sample.model.PetEntity;
-import io.techery.analytics.sample.model.PetType;
+import io.techery.analytics.sample.event.BuyPetEvent;
+import io.techery.analytics.sample.event.SuccessorEvent;
+import io.techery.analytics.sample_common.entity.PetEntity;
+import io.techery.analytics.sample_common.entity.PetType;
+import io.techery.analytics.sample_common.janet.action.BaseAnalyticsAction;
 import io.techery.analytics.service.AnalyticsService;
+import io.techery.janet.ActionPipe;
 import io.techery.janet.ActionService;
 import io.techery.janet.Janet;
 import io.techery.janet.analytics.Tracker;
@@ -23,25 +26,20 @@ public class Example {
       Janet janet = new Janet.Builder().addService(actionService).build();
 
       Calendar petBirthDate = Calendar.getInstance();
-      petBirthDate.set(Calendar.YEAR, 2015);
+      petBirthDate.set(Calendar.YEAR, 2017);
       PetEntity pet = new PetEntity(PetType.DOG, "Moohtar", petBirthDate);
-      PetBuyEvent event = new PetBuyEvent(pet);
+      BuyPetEvent event = new BuyPetEvent(pet);
 
-      janet.createPipe(PetBuyEvent.class).send(event);
-   }
+      janet.createPipe(BuyPetEvent.class).send(event);
 
-   private static String printArray(String[] array) {
-      StringBuilder stringBuilder = new StringBuilder("[");
-      for (String element : array) {
-         stringBuilder.append("\"").append(element).append("\", ");
-      }
-      stringBuilder.append("]");
-      return stringBuilder.toString().replace(", ]", "]");
+      // another way to handle pipes and events for janet:
+      ActionPipe<BaseAnalyticsAction> analyticsPipe = janet.createPipe(BaseAnalyticsAction.class);
+      analyticsPipe.send(new SuccessorEvent("parent_attribute", "successor_attribute"));
    }
 
    private List<Tracker> provideTrackers() {
       final List<Tracker> trackers = new ArrayList<>();
-      trackers.add(new MyAnalyticsSdkTracker());
+      trackers.add(new SomeAnalyticsTracker());
       return trackers;
    }
 }

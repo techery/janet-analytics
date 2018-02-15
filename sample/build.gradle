@@ -2,7 +2,7 @@
 buildscript {
 
     ext {
-        kotlinVersion = "1.1.60"
+        kotlinVersion = "1.2.21"
     }
 
     repositories {
@@ -22,18 +22,20 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+apply plugin: 'application'
 apply plugin: "idea"
 apply plugin: "java"
 apply plugin: "kotlin"
 apply plugin: "kotlin-kapt"
 
-sourceSets.main.java.srcDir new File(buildDir, "/generated")
 idea {
     module {
-        // Marks the already(!) added srcDir as "generated"
-        generatedSourceDirs += file("build/generated")
+        sourceDirs += files('build/generated/source/kapt/main', 'build/generated/source/kaptKotlin/main')
+        generatedSourceDirs += files('build/generated/source/kapt/main', 'build/generated/source/kaptKotlin/main')
     }
 }
+
+mainClassName = "io.techery.analytics.sample.Example"
 
 compileJava {
     sourceCompatibility = 1.8
@@ -51,7 +53,7 @@ kapt {
 dependencies {
     implementation project(":service")
     implementation project(":sample-dependency")
-    implementation project(":sample-dependency-second")
+    implementation project(":sample-common")
     kapt project(":service-compiler")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"

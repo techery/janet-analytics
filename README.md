@@ -115,10 +115,10 @@ public class BuyPetEvent {
     @AttributeMap
     Map<String, Object> data = new HashMap<>();
 
-    public BuyPetEvent(PetEntity petEntity) {
-        petType = petEntity.petType.name().toLowerCase(Locale.US);
-        petBirthDate = DateFormat.getDateInstance().format(petEntity.birthDate);
-        data.put("pet_name", petEntity.name);
+    public BuyPetEvent(PetEntity pet) {
+        petType = pet.petType.name().toLowerCase(Locale.US); // assuming PetType is a enum
+        petBirthDate = DateFormat.getDateInstance().format(pet.birthDate);
+        data.put("pet_name", pet.name);
     }
 }
 ```
@@ -171,6 +171,20 @@ Grab via Gradle:
 
  * janet-analytics: [![](https://jitpack.io/v/techery/janet-analytics.svg)](https://jitpack.io/#techery/janet-analytics)
  * janet: [![](https://jitpack.io/v/janet-io/janet.svg)](https://jitpack.io/#janet-io/janet)
+
+#### Android addons
+
+ Two `Tracker` implementations for the Adobe and Apptentive analytics vendors are here for you. Just add some of these dependencies to your build.gradle:
+
+ ```groovy
+  dependencies {
+      ...
+
+      implementation 'com.github.techery:analytics:android-adobe-tracker:xxx'
+      implementation 'com.github.techery:analytics:android-apptentive-tracker:xxx'
+  }
+ ```
+ > NOTE: setting up a particular SDK in your application (e.g. providing `API_KEY`s and stuff) is up to you. These trackers only handle interface implementation, push processed event to SDK using its API and perform lifecycle tracking when used for Adobe.
 
 ## License
 

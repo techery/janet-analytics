@@ -1,0 +1,45 @@
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        applicationId "io.techery.analytics.sample.android"
+        versionCode 1
+        versionName "1.0"
+        minSdkVersion 18
+        targetSdkVersion 22
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation project(':api')
+    implementation project(':android-apptentive-tracker')
+    implementation project(':android-adobe-tracker')
+    implementation project(':sample-common')
+
+    implementation project(':service')
+    annotationProcessor project(':service-compiler')
+
+    implementation 'com.google.dagger:dagger:2.14.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.14.1'
+
+    implementation 'com.github.techery:janet:1.0.7'
+    // it is better to depend explicitly upon latest version
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}

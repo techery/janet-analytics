@@ -1,7 +1,9 @@
 include 'api'
 include 'service-compiler'
 include 'service'
+include 'android-apptentive-tracker'
+include 'android-adobe-tracker'
 include 'sample'
+include 'sample-common'
+include 'android-sample'
 include 'sample-dependency'
-include 'sample-dependency-second'
-

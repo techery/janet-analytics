@@ -1,0 +1,31 @@
+
+apply plugin: 'com.android.library'
+apply from: rootProject.file('gradle/plugins/maven-simple.gradle')
+
+android {
+
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+        minSdkVersion 18
+        targetSdkVersion 22
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+}
+
+dependencies {
+    compile project(':api')
+    compile 'com.adobe.mobile:adobeMobileLibrary:4.13.7'
+}
