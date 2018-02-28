@@ -1,6 +1,16 @@
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    }
+}
+
 apply plugin: 'com.android.library'
-apply from: rootProject.file('gradle/plugins/maven-simple.gradle')
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
 
