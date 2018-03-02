@@ -1,16 +1,23 @@
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-    }
-}
-
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.techery'
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+artifacts {
+    archives sourcesJar
+//    archives javadocJar
+}
 
 android {
 
@@ -36,6 +43,6 @@ repositories {
 }
 
 dependencies {
-    compile project(':api')
-    compile 'com.adobe.mobile:adobeMobileLibrary:4.13.7'
+    api project(':api')
+    api 'com.adobe.mobile:adobeMobileLibrary:4.13.7'
 }

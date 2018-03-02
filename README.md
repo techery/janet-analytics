@@ -1,6 +1,7 @@
 ## Analytics ActionService
 
-[![Build Status](https://travis-ci.org/techery/janet-analytics.svg?branch=master)](https://travis-ci.org/techery/janet-analytics)
+[![Build Status](https://travis-ci.org/techery/janet-analytics.svg?branch=master)](https://travis-ci.org/techery/janet-analytics) 
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
 The [Janet](https://github.com/techery/janet) ActionService handles analytics events in a descriptive and command-based way throughout your project.
 

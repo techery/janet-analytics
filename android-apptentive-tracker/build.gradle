@@ -1,16 +1,17 @@
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-    }
-}
-
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.techery'
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
 
 android {
 
@@ -36,6 +37,6 @@ repositories {
 }
 
 dependencies {
-    compile project(':api')
-    compile 'com.apptentive:apptentive-android:5.0.2'
+    api project(':api')
+    api 'com.apptentive:apptentive-android:5.0.2'
 }
