@@ -163,7 +163,7 @@ Grab via Gradle:
       maven { url "https://jitpack.io" }
   }
   dependencies {
-      implementation 'com.github.techery.janet-analytics:library:xxx'
+      implementation 'com.github.techery.janet-analytics:service:xxx'
       apt 'com.github.techery.janet-analytics:service-compiler:xxx'
       // use kapt if your project has analytics events written in Kotlin
       
@@ -183,8 +183,8 @@ Grab via Gradle:
   dependencies {
       ...
 
-      implementation 'com.github.techery:analytics:android-adobe-tracker:xxx'
-      implementation 'com.github.techery:analytics:android-apptentive-tracker:xxx'
+      implementation 'com.github.techery.janet-analytics:android-adobe-tracker:xxx'
+      implementation 'com.github.techery.janet-analytics:android-apptentive-tracker:xxx'
   }
  ```
  > NOTE: setting up a particular SDK in your application (e.g. providing `API_KEY`s and stuff) is up to you. These trackers only handle interface implementation, push processed event to SDK using its API and perform lifecycle tracking when used for Adobe.
