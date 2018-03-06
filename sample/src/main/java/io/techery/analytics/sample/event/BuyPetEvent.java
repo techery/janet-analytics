@@ -25,6 +25,9 @@ public class BuyPetEvent implements BaseAnalyticsAction {
    @Attribute("pet_birth_date")
    String petBirthDate;
 
+   @Attribute("pet_gender")
+   String petGender = "female";
+
    @AttributeMap
    Map<String, Object> data = new HashMap<>();
 

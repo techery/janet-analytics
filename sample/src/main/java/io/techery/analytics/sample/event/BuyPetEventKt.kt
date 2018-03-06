@@ -24,6 +24,9 @@ class BuyPetEventKt(petEntity: PetEntity) : BaseAnalyticsAction { // kotlin clas
     @Attribute("pet_birth_date")
     val petBirthDate: String = DateFormat.getDateInstance().format(petEntity.birthDate.time)
 
+    @Attribute("pet_gender")
+    val gender: String = "female"
+
     @AttributeMap
     val data: HashMap<String, Any> = HashMap()
 
