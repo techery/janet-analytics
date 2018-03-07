@@ -85,7 +85,6 @@ public class ActionClassUtils {
                      element.getAnnotation(Attribute.class).value(),
                      resolveAccessibleFieldName(elementUtils, typeElement, element.getSimpleName().toString())
                ));
-               break;
             }
          }
       }

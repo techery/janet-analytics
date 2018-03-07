@@ -3,6 +3,7 @@ package io.techery.analytics.sample.event;
 import org.junit.Test;
 
 import io.techery.analytics.sample.BaseTest;
+import io.techery.analytics.sample.utils.MapMatcher;
 
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -18,11 +19,9 @@ public class SuccessorEventTest extends BaseTest {
 
       analyticsPipe.send(event);
       verify(tracker).trackEvent(eq("event_with_superclass:SuccessorEvent"),
-              argThat(argument ->
-                      argument.containsKey("successor_attribute") &&
-                              argument.get("successor_attribute").equals("SUCCESSOR") &&
-                              argument.containsKey("attribute_from_parent") &&
-                              argument.get("attribute_from_parent").equals("PARENT")
-              ));
+              argThat(MapMatcher.builder()
+                    .with("successor_attribute", successorAttribute)
+                    .with("attribute_from_parent", parentAttribute)
+                    .build()));
    }
 }
