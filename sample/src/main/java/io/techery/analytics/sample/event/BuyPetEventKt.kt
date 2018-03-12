@@ -27,10 +27,14 @@ class BuyPetEventKt(petEntity: PetEntity) : BaseAnalyticsAction { // kotlin clas
     @Attribute("pet_gender")
     val gender: String = "female"
 
+    @Attribute("nullable_attribute")
+    val nullableAttribute: Int?
+
     @AttributeMap
     val data: HashMap<String, Any> = HashMap()
 
     init {
+        nullableAttribute = null
         data["pet_name"] = petEntity.name
     }
 }

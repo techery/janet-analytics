@@ -129,7 +129,9 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
       }
 
       for (AttributeEntity attributeEntity : actionClass.attributeEntities) {
+         builder.beginControlFlow("if (action.$L != null)", attributeEntity.attributeAccessibleFieldName);
          builder.addStatement("data.put($S, action.$L)", attributeEntity.attributeKey, attributeEntity.attributeAccessibleFieldName);
+         builder.endControlFlow();
       }
 
       builder.addStatement("return data");

@@ -28,12 +28,16 @@ public class BuyPetEvent implements BaseAnalyticsAction {
    @Attribute("pet_gender")
    String petGender = "female";
 
+   @Attribute("nullable_attribute")
+   Integer nullableAttribute;
+
    @AttributeMap
    Map<String, Object> data = new HashMap<>();
 
    public BuyPetEvent(PetEntity petEntity) {
       petType = petEntity.petType.name().toLowerCase(Locale.US);
       petBirthDate = DateFormat.getDateInstance().format(petEntity.birthDate.getTime());
+      nullableAttribute = null;
       data.put("pet_name", petEntity.name);
    }
 }
