@@ -134,7 +134,7 @@ The `@AnalyticsEvent` annotation flags a class as the one to be processed by `An
 Annotations for class fields:
 
  * `@KeyPath` – use this annotation if you want to format your `actionKey` at runtime
- * `@Attribute` - the annotation `value` and field value will form a key-value pair in the `data` map that the tracker receives. Accepts primitives, String, Boolean and boxed numbers
+ * `@Attribute` - the annotation `value` and field value will form a key-value pair in the `data` map that the tracker receives. Accepts primitives, String, Boolean and boxed numbers. Attributes with `null` value will be skipped and not sent to tracker
  * `@AttributeMap` – sometimes, it might be easier to form a map than to create a [big] number of annotated fields. These map contents will be merged with attributes.
 
 For more info please see the `sample` project code.

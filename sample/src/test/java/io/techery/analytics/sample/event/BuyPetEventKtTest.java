@@ -28,6 +28,7 @@ public class BuyPetEventKtTest extends BaseTest {
                   .with("pet_birth_date", "May 13, 2015")
                   .with("pet_name", "Moohtar")
                   .with("pet_gender", "female")
+                  .without("nullable_attribute")
                   .build()
             ));
    }
