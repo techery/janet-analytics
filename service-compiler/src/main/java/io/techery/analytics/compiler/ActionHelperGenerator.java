@@ -122,9 +122,10 @@ public class ActionHelperGenerator extends CodeGenerator<AnalyticActionClass> {
              String.class, Object.class);
 
       if (actionClass.containsAttributeMap) {
-         builder.addStatement("//noinspection CollectionAddAllCanBeReplacedWithConstructor");
          for (String mapAccessibleName : actionClass.attributeMapAccessorNames) {
+            builder.beginControlFlow("if (action.$L != null && !action.$L.isEmpty())", mapAccessibleName, mapAccessibleName);
             builder.addStatement("data.putAll(action.$L)", mapAccessibleName);
+            builder.endControlFlow();
          }
       }
 
